@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: random-http-api
-        image: khaosdoctor/random-http-api
+        image: khaosdoctor/http-random-api
         volumeMounts:
           - name: shared
             mountPath: /tmp/shared
@@ -29,7 +29,7 @@ spec:
           name: http
 
       - name: random-http-exporter
-        image: khaosdoctor/random-http-exporter
+        image: khaosdoctor/http-random-api-exporter
         volumeMounts:
           - name: shared
             mountPath: /tmp/shared
