@@ -7,9 +7,6 @@ metadata:
     prometheus.io/path: /
     prometheus.io/port: "9837"
 spec:
-  volumes:
-    - name: shared
-      emptyDir: {}
   selector:
     matchLabels:
       app: random-http
@@ -18,6 +15,9 @@ spec:
       labels:
         app: random-http
     spec:
+      volumes:
+        - name: shared
+          emptyDir: {}
       containers:
       - name: random-http-api
         image: khaosdoctor/http-random-api
