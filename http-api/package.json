@@ -1,0 +1,17 @@
+{
+  "name": "http-api",
+  "version": "1.0.0",
+  "description": "Uma API HTTP simples que retorna erros aleatóriamente",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Lucas Santos <hello@lsantos.dev>",
+  "homepage": "https://blog.lsantos.dev",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "http-status-codes": "^2.1.4",
+    "koa": "^2.13.1"
+  }
+}
