@@ -1,6 +1,5 @@
 const inMemoryMetrics = {
   statusCounts: {},
-  history: {},
   callCounts: 0,
   lastResponseTime: 0,
   maxResponseTime: 0,
@@ -13,7 +12,6 @@ function record (requestDuration, statusCode = undefined) {
     if (requestDuration < inMemoryMetrics.minResponseTime) inMemoryMetrics.minResponseTime = requestDuration
     inMemoryMetrics.lastResponseTime = requestDuration
     inMemoryMetrics.callCounts++
-    inMemoryMetrics.history[Date.now()] = requestDuration
   }
 
   if (statusCode) inMemoryMetrics.statusCounts[statusCode] = inMemoryMetrics.statusCounts[statusCode] ? inMemoryMetrics.statusCounts[statusCode] + 1 : 1

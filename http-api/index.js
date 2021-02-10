@@ -62,5 +62,4 @@ app.use(async (ctx) => {
 console.log(`Listening on 3000`)
 app.listen(3000)
 
-setInterval(() => { metricsService.writeToDisk('/tmp/shared', 'metrics.json') }, process.env.METRICS_WRITE_INTERVAL || 1000)
-setInterval(() => { metricsService.metrics.history = {} }, 15000)
+setInterval(() => { metricsService.writeToDisk('/tmp/shared', 'metrics.json') }, process.env.METRICS_WRITE_INTERVAL || 500)
