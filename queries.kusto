@@ -1,0 +1,17 @@
+InsightsMetrics 
+| where Namespace == "prometheus"
+| where Name in ("node_http_random_api_status_counts")
+| where TimeGenerated > ago(1h)
+| extend Tags = todynamic(Tags)
+| extend StatusCode = tostring(Tags.statusCode)
+| project Name, Val, StatusCode, TimeGenerated
+| summarize avg(Val) by TimeGenerated, StatusCode
+
+InsightsMetrics
+| where Namespace == "prometheus"
+| where Name in ("node_http_random_api_response_time")
+| extend Tags=todynamic(Tags)
+| extend Percentile=Tags.quantile
+| project Name, TimeGenerated, Percentile, Val
+| summarize avg(Val) by TimeGenerated
+| render timechart with ( accumulate=false )
