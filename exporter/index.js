@@ -1,3 +1,4 @@
+const fs = require('fs/promises')
 const Koa = require('koa')
 const app = new Koa()
 
@@ -52,8 +53,16 @@ registry.registerMetric(statusCounts)
 // --Utility Function-- //
 
 async function scrapeApplication () {
+  try {
+    // Checa assincronamente se o diretório existe
+    await fs.stat('/tmp/shared/metrics.json')
+  } catch (error) {
+    // Como retorna um erro, podemos retornar direto
+    return
+  }
+
   // Importante que seja assíncrono se não o event loop será bloqueado
-  const file = await require('fs/promises').readFile('/tmp/shared/metrics.json')
+  const file = await fs.readFile('/tmp/shared/metrics.json')
   const currentHash = require('crypto').createHash('sha256').update(file).digest('hex')
   console.log(`Scraping file [scrape hash: ${currentHash}]`)
 
