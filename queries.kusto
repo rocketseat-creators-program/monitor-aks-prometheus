@@ -12,6 +12,7 @@ InsightsMetrics
 | where Name in ("node_http_random_api_response_time")
 | extend Tags=todynamic(Tags)
 | extend Percentile=Tags.quantile
+| where Percentile="0.95"
 | project Name, TimeGenerated, Percentile, Val
 | summarize avg(Val) by TimeGenerated
 | render timechart with ( accumulate=false )
