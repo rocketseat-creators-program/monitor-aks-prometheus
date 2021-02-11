@@ -2,10 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: random-http
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/path: /
-    prometheus.io/port: "9837"
 spec:
   selector:
     matchLabels:
@@ -14,6 +10,10 @@ spec:
     metadata:
       labels:
         app: random-http
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /
+        prometheus.io/port: "9837"
     spec:
       volumes:
         - name: shared
